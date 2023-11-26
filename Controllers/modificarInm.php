@@ -11,13 +11,23 @@
     $ciudad = $_POST['ciudad'];
     $barrio = $_POST['barrio'];
 
-    $objConsultas = new Consultas();
-    $statement = $objConsultas->modificarInm($id, $tipo, $categoria, $precio, $tamano, $ciudad, $barrio);
+    $foto = "../fotoperfiles/inmueble1919/".$_FILES['foto']['name'];
+    $statement = move_uploaded_file($_FILES['foto']['tmp_name'], $foto);
+
+    echo $_FILES['foto']['name'];
 
     
+    $objConsultas = new Consultas();
+    $fotosAntiguas = $objConsultas->obtenerFotosInmueble($id);
+    
+    foreach ($fotosAntiguas as $fotoAntigua) {
+        if ($fotoAntigua != $foto) {
+            unlink($fotoAntigua);
+        }
+    }
+    $statement = $objConsultas->modificarInm($id, $tipo, $categoria, $precio, $tamano, $ciudad, $barrio, $foto);
 
-
-
-
+    // Elimina las fotos antiguas excepto la última
+    
 
 ?>

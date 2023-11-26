@@ -67,9 +67,12 @@
 
             echo '
 
-                <form action="../Controllers/modificarInm.php" method="POST">
+                <form action="../Controllers/modificarInm.php" method="POST" enctype="multipart/form-data">
                 
                     <div class="select">
+                        <figure class="photo-preview">
+                            <img src="'.$f['foto'].'" alt="" style="position:absolute; top:-90px;width:90px">
+                        </figure>
                         <select name="tipo">
                             <option value="'.$f['tipo'].'">'.$f['tipo'].'</option>
                             <option value="Apartamento">Apartamento</option>
@@ -88,7 +91,8 @@
                     <input name="id" type="hidden" placeholder="Precio..." value="'.$f['id'].'">
                     <input name="tamano" type="number" placeholder="Tamaño..." value="'.$f['tamano'].'">
                     <input name="ciudad" type="text" placeholder="Ciudad..." value="'.$f['ciudad'].'">
-                    <input name="barrio" type="text" placeholder="Localidad/Barrio..." value="'.$f['barrio'].'">
+                    <input name="barrio" type="text" placeholder="Localidad//Barrio..." value="'.$f['barrio'].'">
+                    <input name="foto" type="file" accept=".png, .jpg" class="upload" aria-describedby="Foto Inmueble">
                     
                     <button class="btn-home">Modificar</button>
                 </form>

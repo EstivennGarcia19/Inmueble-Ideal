@@ -158,16 +158,31 @@
 
         }
 
+        public function obtenerFotosInmueble($id) {
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+        
+            $sql = "SELECT foto FROM inmuebles WHERE id = :id";
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(":id", $id);
+            $statement->execute();
+        
+            $fotosAntiguas = $statement->fetchAll(PDO::FETCH_COLUMN);
+        
+            return $fotosAntiguas;
+        }
+        
 
 
 
 
-        public function modificarInm($id, $tipo, $categoria, $precio, $tamano, $ciudad, $barrio){
+
+        public function modificarInm($id, $tipo, $categoria, $precio, $tamano, $ciudad, $barrio, $foto){
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
-
-            $sql = "UPDATE inmuebles SET tipo = :tipo, categoria = :categoria, precio = :precio, tamano = :tamano, ciudad = :ciudad, barrio = :barrio WHERE id = :id";
+            
+            $sql = "UPDATE inmuebles SET tipo = :tipo, categoria = :categoria, precio = :precio, tamano = :tamano, ciudad = :ciudad, barrio = :barrio, foto = :foto WHERE id = :id";
 
             $statement = $conexion->prepare($sql);
     
@@ -178,12 +193,15 @@
             $statement->bindParam(":tamano", $tamano);
             $statement->bindParam(":ciudad", $ciudad);
             $statement->bindParam(":barrio", $barrio);
+            $statement->bindParam(":foto", $foto);
 
             $statement->execute();
 
-            echo '<script>alert("Inmueble Actualizado Con exito")</script>';
-            echo "<script>location.href='../Views/InmoApartamentos.php'</script>";
+            // echo '<script>alert("Inmueble Actualizado Con exito")</script>';
+            // echo "<script>location.href='../Views/InmoApartamentos.php'</script>";
         }
+        
+        
 
 
 

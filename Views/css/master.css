@@ -401,11 +401,17 @@ main.dashboard table tr td {
 }
 
 main.dashboard table tr td figure {
-    margin: 0px;
+     margin: 0px;
     position: absolute;
     top: 14px;
     left: 10px;
     padding-top: 10px;
+    border: 1px solid red;
+    height: 70px;
+    width: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 main.dashboard table tr td figure img {
